@@ -1,17 +1,18 @@
-package Test;
+package test;
 
-import Calculator.*;
+import calculator.*;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 
-class RPNTest {
+class ShuntingYardTest {
     @Test
     void main() {
         var input = new ArrayList<>(
-                Arrays.asList( //-(-67)/(30*-3/-(33))/(4/((((24/-44-38)))))
+                Arrays.asList(//-(-67)/(30*-3/-(33))/(4/((((24/-44-38)))))
                         new Token(Type.OPERATOR, "-"),
                         new Token(Type.L_BRACKET, "("),
                         new Token(Type.OPERATOR, "-"),
@@ -52,7 +53,7 @@ class RPNTest {
         );
 
         var expected = new ArrayList<>(
-                Arrays.asList( //['67', 'm', 'm', '30', '3', 'm', '*', '33', 'm', '/', '/', '4', '24', '44', 'm', '/', '38', '-', '/', '/']
+                Arrays.asList(//['67', 'm', 'm', '30', '3', 'm', '*', '33', 'm', '/', '/', '4', '24', '44', 'm', '/', '38', '-', '/', '/']
                         new Token(Type.INT, "67"),
                         new Token(Type.OPERATOR, "m"),
                         new Token(Type.OPERATOR, "m"),
@@ -75,8 +76,8 @@ class RPNTest {
                         new Token(Type.OPERATOR, "/")
                 )
         );
-        var result = RPN.convert(input);
-        Assertions.assertArrayEquals(result.toArray(), expected.toArray());
+        var result = ShuntingYard.convert(input);
+        Assertions.assertEquals(result.toArray(), expected.toArray());
     }
 }
 

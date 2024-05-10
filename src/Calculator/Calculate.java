@@ -1,11 +1,11 @@
-package Calculator;
+package calculator;
 
 import java.util.ArrayList;
 import java.util.Stack;
 
 public class Calculate {
-    public static Stack<Double> calculate (ArrayList<Token> tokens) {
-        TokenCollection result = RPN.convert(tokens);
+    public static Stack<Double> calculate(ArrayList<Token> tokens) {
+        TokenCollection result = ShuntingYard.convert(tokens);
         Stack<Double> answer = new Stack<>();
         for (Token token : result) {
             if (token.isNumber()) {
@@ -21,6 +21,9 @@ public class Calculate {
                         case "m":
                             answer.push(-opU);
                             break;
+
+                        default:
+                            throw new Error("Unrecognized operator%s".formatted(token.value));
                     }
                 } else {
                     double opL = answer.pop();
@@ -41,6 +44,10 @@ public class Calculate {
                         case "/":
                             answer.push(opR / opL);
                             break;
+
+                        default:
+                            throw new Error("Unrecognized operator%s".formatted(token.value));
+
                     }
                 }
             }

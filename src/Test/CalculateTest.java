@@ -1,17 +1,16 @@
-package Test;
+package test;
 
-import Calculator.*;
-
+import calculator.*;
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
 
+
+import static org.junit.jupiter.api.Assertions.*;
 
 class CalculateTest {
     @Test
     void main() {
         String string = "-123";
-        var tokens = Tokenizer.tokenize(string);
-        var calculate = Calculate.calculate(tokens);
+        var calculate = Calculate.calculate(Tokenizer.tokenize(string));
         double answer = -123d;
         assertEquals(calculate.getLast().doubleValue(), answer);
     }

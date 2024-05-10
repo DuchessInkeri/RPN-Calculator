@@ -1,37 +1,32 @@
-import Calculator.*;
+import calculator.*;
+
 import java.util.Scanner;
 
-
-public static void main() {
-    String hello = """ 
-            Hello, friend! This is CLI (Command Line Interface) calculator.
-            Please enter your expression:
-            """;
-    System.out.println(hello);
-    Scanner scanner = new Scanner(System.in);
-
-    while (true) {
-        String input = scanner.nextLine();
-        if (input.isEmpty()) {
-            continue;
-        }
-        var tokens = Tokenizer.tokenize(input);
-        var result = RPN.convert(tokens);
-        System.out.println(STR."RPN:\n\{result}");
-        var calculate = Calculate.calculate(tokens);
-        System.out.println(STR."Result: \{calculate.pop()}");
-
-        boolean cont = true;
-        while (cont) {
+public class Main {
+    public static void main(String[] args) {
+        String hello = """ 
+                Hello, friend! This is CLI (Command Line Interface) calculator.
+                Please enter your expression:
+                """;
+        System.out.println(hello);
+        Scanner scanner = new Scanner(System.in);
+        while (true) {
+            String input = scanner.nextLine();
+            if (input.isEmpty()) {
+                continue;
+            }
+            double answer = Calculate.calculate(Tokenizer.tokenize(input)).pop();
+            System.out.printf("Result: %s%n", answer);
             System.out.println("Continue [Y/N]");
-            String answer = scanner.nextLine();
-            if (answer.equalsIgnoreCase("y")) {
+            String string = scanner.nextLine();
+            if (string.equalsIgnoreCase("y")) {
                 System.out.println("Please enter your expression:");
-                cont = false;
-            } else if (answer.equalsIgnoreCase("n")) {
+            } else if (string.equalsIgnoreCase("n")) {
                 return;
+            } else {
+                System.out.println("Invalid input");
+                break;
             }
         }
     }
 }
-
