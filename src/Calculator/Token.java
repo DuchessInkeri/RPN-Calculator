@@ -43,8 +43,7 @@ public class Token {
     public boolean equals(Object other) {
         if (other == null) return false;
         if (other == this) return true;
-        if (!(other instanceof Token)) return false;
-        Token otherToken = (Token) other;
+        if (!(other instanceof Token otherToken)) return false;
         return type == otherToken.type && value.equals(otherToken.value);
     }
 }

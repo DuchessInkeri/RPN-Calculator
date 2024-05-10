@@ -1,8 +1,6 @@
 import Calculator.*;
-
 import java.util.Scanner;
 
-import static java.lang.StringTemplate.STR;
 
 public static void main() {
     String hello = """ 
@@ -21,17 +19,16 @@ public static void main() {
         var result = RPN.convert(tokens);
         System.out.println(STR."RPN:\n\{result}");
         var calculate = Calculate.calculate(tokens);
-        System.out.println(STR."Result: \{calculate.pop().doubleValue()}");
+        System.out.println(STR."Result: \{calculate.pop()}");
 
         boolean cont = true;
         while (cont) {
             System.out.println("Continue [Y/N]");
             String answer = scanner.nextLine();
-            if (answer.toLowerCase().equals("y")) {
+            if (answer.equalsIgnoreCase("y")) {
                 System.out.println("Please enter your expression:");
                 cont = false;
-            } else if (answer.toLowerCase().equals("n")) {
-                cont = false;
+            } else if (answer.equalsIgnoreCase("n")) {
                 return;
             }
         }
