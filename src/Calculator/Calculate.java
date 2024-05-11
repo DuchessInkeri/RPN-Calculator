@@ -10,7 +10,7 @@ public class Calculate {
         for (Token token : result) {
             if (token.isNumber()) {
                 answer.push(Double.parseDouble(token.value));
-            } else if (token.type.equals(Type.OPERATOR)) {
+            } else if (token.type == Token.Type.OPERATOR) {
                 if (token.isUnary()) {
                     double opU = answer.pop();
                     switch (token.value) {
@@ -23,7 +23,7 @@ public class Calculate {
                             break;
 
                         default:
-                            throw new Error("Unrecognized operator%s".formatted(token.value));
+                            throw new Error("Unrecognized operator '%s'".formatted(token.value));
                     }
                 } else {
                     double opL = answer.pop();
@@ -46,7 +46,7 @@ public class Calculate {
                             break;
 
                         default:
-                            throw new Error("Unrecognized operator%s".formatted(token.value));
+                            throw new Error("Unrecognized operator '%s'".formatted(token.value));
 
                     }
                 }

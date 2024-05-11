@@ -14,17 +14,17 @@ public class ShuntingYard {
     }
 
     public static TokenCollection convert(ArrayList<Token> tokens) {
-        TokenCollection rpn = new TokenCollection();
+        TokenCollection result = new TokenCollection();
         Stack<Token> stack = new Stack<>();
         boolean afterParentheses = false;
         Token lastToken = tokens.getFirst();
         for (int i = 0; i < tokens.size(); i++) {
             Token token = tokens.get(i);
             if (token.isNumber()) {
-                rpn.add(token);
+                result.add(token);
             } else if (token.value.equals("(")) {
                 stack.push(token);
-            } else if (token.type == Type.OPERATOR) {
+            } else if (token.type == Token.Type.OPERATOR) {
                 if (i == 0 && token.value.equals("-")) {
                     token.value = "m";
                 } else if (i == 0 && token.value.equals("+")) {
@@ -32,16 +32,21 @@ public class ShuntingYard {
                 } else if (!stack.empty()) {
                     var lastOP = stack.peek();
                     if (!afterParentheses) {
-                        if ((lastOP.type == Type.OPERATOR || lastOP.value.equals("(")) && token.value.equals("-") && !lastOP.value.equals("m") && !lastOP.value.equals("p") && !lastToken.isNumber()) {
+                        if ((lastOP.type == Token.Type.OPERATOR || lastOP.value.equals("("))
+                                && token.value.equals("-") && !lastOP.value.equals("m")
+                                && !lastOP.value.equals("p") && !lastToken.isNumber()) {
                             token.value = "m";
                         }
-                        if ((lastOP.type == Type.OPERATOR || lastOP.value.equals("(")) && token.value.equals("+") && !lastOP.value.equals("m") && !lastOP.value.equals("p") && !lastToken.isNumber()) {
+                        if ((lastOP.type == Token.Type.OPERATOR || lastOP.value.equals("("))
+                                && token.value.equals("+") && !lastOP.value.equals("m")
+                                && !lastOP.value.equals("p") && !lastToken.isNumber()) {
                             token.value = "p";
                         }
                     }
-                    while (lastOP.type == Type.OPERATOR) {
-                        if (token.isLeftAssociativity() && position(token) <= position(lastOP) || !token.isLeftAssociativity() && position(token) < position(lastOP)) {
-                            rpn.add(stack.pop());
+                    while (lastOP.type == Token.Type.OPERATOR) {
+                        if (token.isLeftAssociativity() && position(token) <= position(lastOP)
+                                || !token.isLeftAssociativity() && position(token) < position(lastOP)) {
+                            result.add(stack.pop());
                             if (stack.empty()) {
                                 break;
                             }
@@ -55,7 +60,7 @@ public class ShuntingYard {
                 afterParentheses = false;
             } else if (token.value.equals(")")) {
                 while (!stack.peek().value.equals("(")) {
-                    rpn.add(stack.pop());
+                    result.add(stack.pop());
                 }
                 stack.pop();
                 afterParentheses = true;
@@ -63,8 +68,8 @@ public class ShuntingYard {
             lastToken = token;
         }
         while (!stack.empty()) {
-            rpn.add(stack.pop());
+            result.add(stack.pop());
         }
-        return rpn;
+        return result;
     }
 }

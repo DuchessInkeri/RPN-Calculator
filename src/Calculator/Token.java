@@ -9,6 +9,13 @@ public class Token {
         this.value = value;
     }
 
+    public enum Type {
+        INT, // Число целое
+        FLOAT, // Число с плавающей точкой
+        OPERATOR, // Оператор
+        L_BRACKET, R_BRACKET // Скобки
+    }
+
     static boolean isDigit(char c) {
         return c >= '0' && c <= '9';
     }
