@@ -44,8 +44,10 @@ public class ShuntingYard {
                         }
                     }
                     while (lastOP.type == Token.Type.OPERATOR) {
-                        if (token.isLeftAssociativity() && position(token) <= position(lastOP)
-                                || !token.isLeftAssociativity() && position(token) < position(lastOP)) {
+                        if (
+                            token.isLeftAssociativity() && position(token) <= position(lastOP)
+                            || !token.isLeftAssociativity() && position(token) < position(lastOP)
+                        ) {
                             result.add(stack.pop());
                             if (stack.empty()) {
                                 break;
