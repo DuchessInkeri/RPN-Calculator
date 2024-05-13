@@ -3,6 +3,7 @@ package calculator;
 public class Token {
     public Type type;
     public String value;
+    private Object other;
 
     public Token(Type type, String value) {
         this.type = type;
@@ -44,17 +45,12 @@ public class Token {
         return String.format(value);
     }
 
+
     @Override
     public boolean equals(Object other) {
-        if (other == null) {
-            return false;
+        if (other instanceof Token) {
+            return this.value.equals(((Token) other).value) && this.type == ((Token) other).type;
         }
-        if (other == this) {
-            return true;
-        }
-        if (!(other instanceof Token otherToken)) {
-            return false;
-        }
-        return type == otherToken.type && value.equals(otherToken.value);
+        return false;
     }
 }

@@ -15,7 +15,7 @@ public class Main {
             if (input.isEmpty()) {
                 continue;
             }
-            double answer = Calculate.calculate(Tokenizer.tokenize(input)).pop();
+            double answer = Calculate.calculate(Tokenizer.tokenize(input));
             System.out.printf("Result: %s%n", answer);
             System.out.println("Continue [Y/N]");
             String string = scanner.nextLine();

@@ -12,6 +12,6 @@ class CalculateTest {
         String string = "-123";
         var calculate = Calculate.calculate(Tokenizer.tokenize(string));
         double answer = -123d;
-        assertEquals(calculate.getLast().doubleValue(), answer);
+        assertEquals(calculate, answer);
     }
 }

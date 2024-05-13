@@ -79,7 +79,7 @@ class ShuntingYardTest {
                 )
         );
         var result = ShuntingYard.convert(input);
-        Assertions.assertEquals(result.toArray(), expected.toArray());
+        Assertions.assertEquals(result, expected);
     }
 }
 
