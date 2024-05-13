@@ -11,8 +11,8 @@ import java.util.Arrays;
 class ShuntingYardTest {
     @Test
     void main() {
+        //-(-67)/(30*-3/-(33))/(4/((((24/-44-38)))))
         var input = new ArrayList<>(
-                //-(-67)/(30*-3/-(33))/(4/((((24/-44-38)))))
                 Arrays.asList(
                         new Token(Token.Type.OPERATOR, "-"),
                         new Token(Token.Type.L_BRACKET, "("),
@@ -52,9 +52,8 @@ class ShuntingYardTest {
                         new Token(Token.Type.R_BRACKET, ")")
                 )
         );
-
+        //['67', 'm', 'm', '30', '3', 'm', '*', '33', 'm', '/', '/', '4', '24', '44', 'm', '/', '38', '-', '/', '/']
         var expected = new ArrayList<>(
-                //['67', 'm', 'm', '30', '3', 'm', '*', '33', 'm', '/', '/', '4', '24', '44', 'm', '/', '38', '-', '/', '/']
                 Arrays.asList(
                         new Token(Token.Type.INT, "67"),
                         new Token(Token.Type.OPERATOR, "m"),

@@ -3,7 +3,6 @@ package calculator;
 public class Token {
     public Type type;
     public String value;
-    private Object other;
 
     public Token(Type type, String value) {
         this.type = type;
@@ -44,7 +43,6 @@ public class Token {
     public String toString() {
         return String.format(value);
     }
-
 
     @Override
     public boolean equals(Object other) {
