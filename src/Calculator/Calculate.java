@@ -7,7 +7,6 @@ public class Calculate {
     public static double calculate(ArrayList<Token> tokens) {
         TokenCollection result = ShuntingYard.convert(tokens);
         Stack<Double> stack = new Stack<>();
-        double answer;
         for (Token token : result) {
             if (token.isNumber()) {
                 stack.push(Double.parseDouble(token.value));
@@ -53,7 +52,6 @@ public class Calculate {
                 }
             }
         }
-        answer = stack.pop();
-        return answer;
+        return stack.pop();
     }
 }
