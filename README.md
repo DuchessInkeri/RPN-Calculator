@@ -6,14 +6,21 @@
 
 To use program:
 
-* Change Directory to \src
-* Compile: ```javac Main.java```
-* Run: ```java Main.java```
+* cd src
+* Compile:```javac -d out Main.java```
+* Run: ```java -cp ./out Main.java```
 
-***
+---
+
 To use tests:
 
-* Change Directory to \src
-* Compile:
-  ```javac -cp junit-platform-console-standalone-1.9.3.jar;. test\CalculateTest.java; test\ShuntingYardTest.java```
-* Run: ```java -jar junit-platform-console-standalone-1.9.3.jar --class-path .;test --scan-class-path```
+* cd src
+* Compile:```javac -d out -cp "junit-platform-console-standalone-1.9.3.jar;." test\CalculateTest.java test\ShuntingYardTest.java```
+* Run: ```java -jar junit-platform-console-standalone-1.9.3.jar --class-path "out" --scan-class-path```
+
+---
+
+To use checkstyle:
+
+* cd RPN-Calculator
+* Run: java -jar checkstyle-10.16.0.jar -c checkstyle.xml src

@@ -22,7 +22,7 @@ public class Main {
             if (string.equalsIgnoreCase("y")) {
                 System.out.println("Please enter your expression:");
             } else if (string.equalsIgnoreCase("n")) {
-                return;
+                break;
             } else {
                 System.out.println("Invalid input");
                 break;
