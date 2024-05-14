@@ -1,5 +1,4 @@
-package Calculator;
-
+package calculator;
 
 public class Token {
     public Type type;
@@ -9,6 +8,14 @@ public class Token {
         this.type = type;
         this.value = value;
     }
+
+    public enum Type {
+        INT, // Число целое
+        FLOAT, // Число с плавающей точкой
+        OPERATOR, // Оператор
+        L_BRACKET, R_BRACKET // Скобки
+    }
+
     static boolean isDigit(char c) {
         return c >= '0' && c <= '9';
     }
@@ -23,7 +30,7 @@ public class Token {
 
     boolean isLeftAssociativity() {
         return switch (this.value) {
-            case "m","p" -> false;
+            case "m", "p" -> false;
             default -> true;
         };
     }
@@ -32,8 +39,6 @@ public class Token {
         return this.value.equals("m") || this.value.equals("p");
     }
 
-
-
     @Override
     public String toString() {
         return String.format(value);
@@ -41,10 +46,9 @@ public class Token {
 
     @Override
     public boolean equals(Object other) {
-        if (other == null) return false;
-        if (other == this) return true;
-        if (!(other instanceof Token)) return false;
-        Token otherToken = (Token) other;
-        return type == otherToken.type && value.equals(otherToken.value);
+        if (other instanceof Token) {
+            return this.value.equals(((Token) other).value) && this.type == ((Token) other).type;
+        }
+        return false;
     }
 }

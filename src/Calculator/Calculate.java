@@ -1,50 +1,57 @@
-package Calculator;
+package calculator;
 
 import java.util.ArrayList;
 import java.util.Stack;
 
 public class Calculate {
-    public static Stack<Double> calculate (ArrayList<Token> tokens) {
-        TokenCollection result = RPN.convert(tokens);
-        Stack<Double> answer = new Stack<>();
+    public static double calculate(ArrayList<Token> tokens) {
+        TokenCollection result = ShuntingYard.convert(tokens);
+        Stack<Double> stack = new Stack<>();
         for (Token token : result) {
             if (token.isNumber()) {
-                answer.push(Double.parseDouble(token.value));
-            } else if (token.type.equals(Type.OPERATOR)) {
+                stack.push(Double.parseDouble(token.value));
+            } else if (token.type == Token.Type.OPERATOR) {
                 if (token.isUnary()) {
-                    double opU = answer.pop();
+                    double opU = stack.pop();
                     switch (token.value) {
                         case "p":
-                            answer.push(+opU);
+                            stack.push(+opU);
                             break;
 
                         case "m":
-                            answer.push(-opU);
+                            stack.push(-opU);
                             break;
+
+                        default:
+                            throw new Error("Unrecognized operator '%s'".formatted(token.value));
                     }
                 } else {
-                    double opL = answer.pop();
-                    double opR = answer.pop();
+                    double opL = stack.pop();
+                    double opR = stack.pop();
                     switch (token.value) {
                         case "+":
-                            answer.push(opL + opR);
+                            stack.push(opL + opR);
                             break;
 
                         case "-":
-                            answer.push(opR - opL);
+                            stack.push(opR - opL);
                             break;
 
                         case "*":
-                            answer.push(opR * opL);
+                            stack.push(opR * opL);
                             break;
 
                         case "/":
-                            answer.push(opR / opL);
+                            stack.push(opR / opL);
                             break;
+
+                        default:
+                            throw new Error("Unrecognized operator '%s'".formatted(token.value));
+
                     }
                 }
             }
         }
-        return answer;
+        return stack.pop();
     }
 }
