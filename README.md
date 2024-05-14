@@ -12,6 +12,14 @@ To use program:
 
 ---
 
+To build .jar file:
+
+* cd out
+* Pack: ```jar cfe calculator.jar Main *.class calculator/```
+* Run: ```java -jar calculator.jar```
+
+---
+
 To use tests:
 
 * cd src
@@ -23,3 +31,4 @@ To use tests:
 To use checkstyle:
 
 * Run: ```java -jar checkstyle-10.16.0.jar -c checkstyle.xml src```
+
