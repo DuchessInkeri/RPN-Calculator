@@ -1,18 +1,19 @@
-package test;
+package Test;
 
-import calculator.*;
-
+import Calculator.Token;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import static Calculator.ShuntingYard.convert;
+
 class ShuntingYardTest {
     @Test
     void main() {
         //-(-67)/(30*-3/-(33))/(4/((((24/-44-38)))))
-        var input = new ArrayList<>(
+        ArrayList<Token> input = new ArrayList<>(
                 Arrays.asList(
                         new Token(Token.Type.OPERATOR, "-"),
                         new Token(Token.Type.L_BRACKET, "("),
@@ -77,7 +78,7 @@ class ShuntingYardTest {
                         new Token(Token.Type.OPERATOR, "/")
                 )
         );
-        var result = ShuntingYard.convert(input);
+        var result = convert(input);
         Assertions.assertEquals(result, expected);
     }
 }

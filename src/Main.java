@@ -1,6 +1,7 @@
-import calculator.*;
-
 import java.util.Scanner;
+
+import static Calculator.Calculate.calculate;
+import static Calculator.Tokenizer.tokenize;
 
 public class Main {
     public static void main(String[] args) {
@@ -15,7 +16,7 @@ public class Main {
             if (input.isEmpty()) {
                 continue;
             }
-            double answer = Calculate.calculate(Tokenizer.tokenize(input));
+            double answer = calculate(tokenize(input));
             System.out.printf("Result: %s%n", answer);
             System.out.println("Continue [Y/N]");
             String string = scanner.nextLine();
