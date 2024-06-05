@@ -23,7 +23,8 @@ To build .jar file:
 To use tests:
 
 * cd src
-* Compile:```javac -d out -cp "junit-platform-console-standalone-1.9.3.jar;." -sourcepath . test/*.java```
+* Compile (windows):```javac -d out -cp "junit-platform-console-standalone-1.9.3.jar;." -sourcepath . test/*.java```
+* Compile (linux):```javac -d out -cp "junit-platform-console-standalone-1.9.3.jar:." -sourcepath . test/*.java```
 * Run: ```java -jar junit-platform-console-standalone-1.9.3.jar --class-path out --scan-class-path```
 
 ---

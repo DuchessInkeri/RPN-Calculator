@@ -1,12 +1,13 @@
 package test;
 
-import calculator.*;
-
+import calculator.Token;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+
+import static calculator.ShuntingYard.convert;
 
 class ShuntingYardTest {
     @Test
@@ -77,8 +78,9 @@ class ShuntingYardTest {
                         new Token(Token.Type.OPERATOR, "/")
                 )
         );
-        var result = ShuntingYard.convert(input);
+        var result = convert(input);
         Assertions.assertEquals(result, expected);
     }
+
 }
 
