@@ -1,13 +1,13 @@
-package Test;
+package test;
 
-import Calculator.Token;
+import calculator.Token;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 
-import static Calculator.ShuntingYard.convert;
+import static calculator.ShuntingYard.convert;
 
 class ShuntingYardTest {
     @Test

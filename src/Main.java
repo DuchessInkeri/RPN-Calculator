@@ -1,7 +1,7 @@
 import java.util.Scanner;
 
-import static Calculator.Calculate.calculate;
-import static Calculator.Tokenizer.tokenize;
+import static calculator.Calculate.calculate;
+import static calculator.Tokenizer.tokenize;
 
 public class Main {
     public static void main(String[] args) {

@@ -1,9 +1,9 @@
-package Test;
+package test;
 
 import org.junit.jupiter.api.Test;
 
-import static Calculator.Calculate.calculate;
-import static Calculator.Tokenizer.tokenize;
+import static calculator.Calculate.calculate;
+import static calculator.Tokenizer.tokenize;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class CalculateTest {
