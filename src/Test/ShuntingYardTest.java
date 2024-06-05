@@ -13,7 +13,7 @@ class ShuntingYardTest {
     @Test
     void main() {
         //-(-67)/(30*-3/-(33))/(4/((((24/-44-38)))))
-        ArrayList<Token> input = new ArrayList<>(
+        var input = new ArrayList<>(
                 Arrays.asList(
                         new Token(Token.Type.OPERATOR, "-"),
                         new Token(Token.Type.L_BRACKET, "("),
@@ -81,5 +81,6 @@ class ShuntingYardTest {
         var result = convert(input);
         Assertions.assertEquals(result, expected);
     }
+
 }
 
